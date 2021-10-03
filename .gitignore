@@ -1,0 +1,10 @@
+/project/target/config-classes/*
+/project/target/streams/*
+/project/target/scala-2.12/sbt-1.0/update/update_cache_2.12/inputs
+/project/target/scala-2.12/sbt-1.0/update/update_cache_2.12/output
+target/
+/.idea/libraries/
+/file.json
+/.bsp/sbt.json
+
+/.idea/uiDesigner.xml
