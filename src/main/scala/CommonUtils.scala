@@ -3,9 +3,6 @@ import java.nio.file.{Files, Paths}
 import play.api.libs.json.{JsValue, Json}
 import PremierLeagueChampionship.TeamTournamentResultWithScore
 
-case class TeamTournamentResult(position: Int, team: String, games: Int, wins: Int, draws: Int, loses: Int, goalsScored: Int, conceded: Int, points: Int) {
-}
-
 /**
  * This class holds common methods, such as data IO, or data conversion.
  */
@@ -13,7 +10,19 @@ object CommonUtils {
   /**
    * This method converts a list of teamTournamentResultWithScore into a JsValue.
    */
-  def getTournamentResultsAsJson(tournamentResults: List[TeamTournamentResultWithScore]): JsValue ={
+  case class TeamTournamentResult(
+    position: Int,
+    team: String,
+    games: Int,
+    wins: Int,
+    draws: Int,
+    loses: Int,
+    goalsScored: Int,
+    conceded: Int,
+    points: Int
+  ) {}
+
+  def getTournamentResultsAsJson(tournamentResults: List[TeamTournamentResultWithScore]): JsValue = {
     val listOfObjects = tournamentResults
       .zipWithIndex
       .map{case(x, index) => TeamTournamentResult(

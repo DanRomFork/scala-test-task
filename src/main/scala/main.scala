@@ -14,7 +14,7 @@ object main extends App {
   // Getting data from the betexplorer.com.
   val webSiteData = HTTPComm.getWebSiteData(betExplorerMatchTableURL)
   // Parsing the data; getting only the match results.
-  val matchesOutcomes = BetExplorerDataParser.parsePremierLeagueResults(webSiteData)
+  val matchesOutcomes = BetExplorerDataParser.parseBetExplorerData(webSiteData)
   // Calculating tournament points for given matches' outcomes.
   val tournamentResults = getSortedTournamentResults(getTournamentResultsWithScore(getTournamentResults(matchesOutcomes)))
 

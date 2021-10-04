@@ -9,7 +9,7 @@ object BetExplorerDataParser {
    * This method takes the entire "Premier League results" page and returns a list of matches' results in the following format:
    * [(Team1Name, Team2Name, Team1Score, Team2Score)].
    */
-  def parsePremierLeagueResults(inputHTML: String): List[MatchResult] = {
+  def parseBetExplorerData(inputHTML: String): List[MatchResult] = {
     val document = Jsoup.parse(inputHTML)
 
     document.select(".table-main tr:has(td)")
