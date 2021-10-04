@@ -1,7 +1,7 @@
 import java.nio.charset.StandardCharsets
 import java.nio.file.{Files, Paths}
 import play.api.libs.json.{JsValue, Json}
-import PremierLeagueChampionship.{teamTournamentResultWithScore}
+import PremierLeagueChampionship.TeamTournamentResultWithScore
 
 case class TeamTournamentResult(position: Int, team: String, games: Int, wins: Int, draws: Int, loses: Int, goalsScored: Int, conceded: Int, points: Int) {
 }
@@ -13,10 +13,20 @@ object CommonUtils {
   /**
    * This method converts a list of teamTournamentResultWithScore into a JsValue.
    */
-  def getTournamentResultsAsJson(tournamentResults: List[teamTournamentResultWithScore]): JsValue ={
+  def getTournamentResultsAsJson(tournamentResults: List[TeamTournamentResultWithScore]): JsValue ={
     val listOfObjects = tournamentResults
       .zipWithIndex
-      .map{case(x, index) => TeamTournamentResult(index + 1, x._1, x._2, x._3, x._4, x._5, x._6, x._7, x._8)}
+      .map{case(x, index) => TeamTournamentResult(
+        index + 1,
+        x.teamName,
+        x.numberOfGames,
+        x.numberOfWins,
+        x.numberOfDraws,
+        x.numberOfLoses,
+        x.scoredGoals,
+        x.concededGoals,
+        x.tournamentScore
+      )}
 
     implicit val tjs = Json.format[TeamTournamentResult]
 

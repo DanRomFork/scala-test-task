@@ -16,7 +16,6 @@ object HTTPComm {
   implicit val materializer = ActorMaterializer()
   import system.dispatcher
 
-
   def sendRequest(URL: String): Future[String] = {
     val request = HttpRequest (
       method = HttpMethods.GET,
