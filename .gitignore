@@ -8,3 +8,4 @@ target/
 /.bsp/sbt.json
 
 /.idea/uiDesigner.xml
+/.idea/*

@@ -140,19 +140,26 @@ object PremierLeagueChampionship {
    */
   def getSortedTournamentResults(tournamentResults: List[TeamTournamentResultWithScore]): List[TeamTournamentResultWithScore] = {
     def sortFunction(item1: TeamTournamentResultWithScore, item2: TeamTournamentResultWithScore): Boolean = {
-      (item1, item2) match {
-        // If tournament points are not the same, we can use them to rank teams.
-        case x if x._1.tournamentScore != x._2.tournamentScore => x._1.tournamentScore > x._2.tournamentScore
-        // Otherwise, if goals' differences are not the same, we can use them.
-        case x if x._1.scoredGoals - x._1.concededGoals != x._2.scoredGoals - x._2.concededGoals =>
-          x._1.scoredGoals - x._1.concededGoals > x._2.scoredGoals - x._2.concededGoals
-        // If goals' differences are also the same, we should use a higher number of goals scored.
-        case x if x._1.scoredGoals != x._2.scoredGoals => x._1.scoredGoals > x._2.scoredGoals
-        // If they are also the same, there should be play-offs.
-        // As a temporary measure let's use the number of matches played for now.
-        case x if x._1.numberOfGames != x._2.numberOfGames => x._1.numberOfGames > x._2.numberOfGames
-        // If even that the same, let's just sort them alphabetically.
-        case _ => item1.teamName < item2.teamName
+      // If tournament points are not the same, we can use them to rank teams.
+      if (item1.tournamentScore != item2.tournamentScore) {
+        item1.tournamentScore > item2.tournamentScore
+      }
+      // Otherwise, if goals' differences are not the same, we can use them.
+      else if (item1.scoredGoals - item1.concededGoals != item2.scoredGoals - item2.concededGoals) {
+        item1.scoredGoals - item1.concededGoals > item2.scoredGoals - item2.concededGoals
+      }
+      // If goals' differences are also the same, we should use a higher number of goals scored.
+      else if (item1.scoredGoals != item2.scoredGoals) {
+        item1.scoredGoals > item2.scoredGoals
+      }
+      // If they are also the same, there should be play-offs.
+      // As a temporary measure let's use the number of matches played for now.
+      else if (item1.numberOfGames != item2.numberOfGames) {
+        item1.numberOfGames < item2.numberOfGames
+      }
+      // If even is that the same, let's just sort them alphabetically.
+      else {
+        item1.teamName < item2.teamName
       }
     }
 
