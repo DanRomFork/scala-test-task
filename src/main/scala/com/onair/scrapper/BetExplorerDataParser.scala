@@ -1,4 +1,7 @@
+package com.onair.scrapper
+
 import org.jsoup.Jsoup
+
 import scala.jdk.CollectionConverters.CollectionHasAsScala
 
 /**

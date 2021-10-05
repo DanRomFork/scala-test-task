@@ -1,5 +1,4 @@
-import PremierLeagueChampionship._
-import CommonUtils._
+package com.onair.scrapper
 
 /*
 * The purpose of this program is to:
@@ -8,8 +7,10 @@ import CommonUtils._
 *   https://www.betexplorer.com/soccer/england/premier-league/ might be used as a reference.
 * 3. Save these standings to a file in the JSON format.
 */
+import com.onair.scrapper.CommonUtils.getTournamentResultsAsJson
+import com.onair.scrapper.PremierLeagueChampionship._
 
-object main extends App {
+object Main extends App {
   val betExplorerMatchTableURL = "https://www.betexplorer.com/soccer/england/premier-league/results/"
   // Getting data from the betexplorer.com.
   val webSiteData = HTTPComm.getWebSiteData(betExplorerMatchTableURL)

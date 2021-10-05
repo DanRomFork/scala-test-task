@@ -1,7 +1,12 @@
+package com.onair.scrapper.specs
+
+import com.onair.scrapper.{BetExplorerDataParser, MatchResult}
 import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers.convertToAnyShouldWrapper
+
 import scala.io.Source
 
-class BetExplorerDataParserTest extends AnyFunSuite {
+class BetExplorerDataParserSpec extends AnyFunSuite {
   test("BetExplorerDataParser.parseBetExplorerData") {
     // Arrange
     val betExplorerSiteMatchesContent =
@@ -26,6 +31,6 @@ class BetExplorerDataParserTest extends AnyFunSuite {
       MatchResult("Brentford", "Arsenal", 2, 0)
     )
 
-    assert(matchesResults.equals(expectedMatchesResults))
+    expectedMatchesResults shouldEqual matchesResults
   }
 }
